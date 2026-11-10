@@ -271,7 +271,6 @@ fieldset legend {
     border: 1px solid var(--n-border-strong);
     border-radius: var(--n-radius);
     box-shadow: var(--n-shadow);
-    margin-top: 2px;
     padding: 5px;
 }
 
