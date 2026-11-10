@@ -1,4 +1,4 @@
-/* Penumbra — pantalla de inicio de sesión (escritorio y móvil) */
+/* Penumbra — login screen (desktop and mobile) */
 :root {
     --n-bg: #0b0d12;
     --n-surface: #12151c;
@@ -107,7 +107,7 @@ input[type="password"] {
     border-radius: 12px;
     color: var(--n-text);
     font: inherit;
-    font-size: 16px; /* evita el zoom automático en iOS */
+    font-size: 16px; /* prevents auto-zoom on iOS */
     outline: none;
     padding: 12px 14px;
     transition: border-color 0.15s, box-shadow 0.15s;

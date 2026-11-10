@@ -1,4 +1,4 @@
-/* Penumbra — interfaz móvil dedicada para qBittorrent */
+/* Penumbra — dedicated mobile UI for qBittorrent */
 
 :root {
     --bg: #0b0d12;
@@ -113,7 +113,7 @@ svg.i.xs {
     }
 }
 
-/* ---------- Estructura ---------- */
+/* ---------- Layout ---------- */
 #app {
     display: flex;
     flex-direction: column;
@@ -205,7 +205,7 @@ svg.i.xs {
     -webkit-overflow-scrolling: touch;
 }
 
-/* Barra de navegación inferior */
+/* Bottom navigation bar */
 .tabbar {
     backdrop-filter: blur(18px) saturate(1.4);
     background: rgb(13 16 22 / 95%);
@@ -251,7 +251,7 @@ body.selecting .tabbar {
     transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* ---------- Velocidades / chips ---------- */
+/* ---------- Speeds / chips ---------- */
 .speeds {
     display: flex;
     gap: 8px;
@@ -415,7 +415,7 @@ body.selecting .tabbar {
     gap: 4px;
 }
 
-/* ---------- Tarjetas de torrent ---------- */
+/* ---------- Torrent cards ---------- */
 .tlist {
     display: flex;
     flex-direction: column;
@@ -674,7 +674,7 @@ body.selecting .tcard .quick {
     font-size: 16px;
 }
 
-/* Botón flotante */
+/* Floating action button */
 .fab {
     align-items: center;
     background: var(--grad);
@@ -706,7 +706,7 @@ body.selecting .fab {
     transform: translateY(200px);
 }
 
-/* Barra de selección múltiple */
+/* Multi-select bar */
 .selhead {
     align-items: center;
     display: flex;
@@ -758,7 +758,7 @@ body.selecting .selbar {
     color: var(--c-err);
 }
 
-/* ---------- Página de detalle (encima de todo) ---------- */
+/* ---------- Detail page (above everything) ---------- */
 .page {
     background: var(--bg);
     display: flex;
@@ -894,7 +894,7 @@ body.selecting .selbar {
     margin-left: 3px;
 }
 
-/* Listas tipo "ajustes" */
+/* "Settings"-style lists */
 .group {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1048,7 +1048,7 @@ button.item:active,
     white-space: nowrap;
 }
 
-/* Interruptor */
+/* Toggle switch */
 .switch {
     flex-shrink: 0;
     height: 30px;
@@ -1095,7 +1095,7 @@ button.item:active,
     transform: translateX(20px);
 }
 
-/* Archivos */
+/* Files */
 .frow {
     align-items: center;
     display: flex;
@@ -1219,7 +1219,7 @@ button.item:active,
     color: var(--c-err);
 }
 
-/* Trackers y pares */
+/* Trackers and peers */
 .trow,
 .prow {
     padding: 11px 14px;
@@ -1300,7 +1300,7 @@ button.item:active,
     font-size: 18px;
 }
 
-/* ---------- Hojas inferiores (bottom sheets) ---------- */
+/* ---------- Bottom sheets ---------- */
 .sheet-wrap {
     inset: 0;
     position: fixed;
@@ -1418,7 +1418,7 @@ button.item:active,
     color: #b9afff;
 }
 
-/* Formularios */
+/* Forms */
 .field {
     margin-bottom: 14px;
 }
@@ -1650,7 +1650,7 @@ button.item:active,
     }
 }
 
-/* Barra de conexión */
+/* Connection bar */
 .offline {
     align-items: center;
     background: rgb(248 113 113 / 14%);
@@ -1713,7 +1713,7 @@ button.item:active,
     text-align: center;
 }
 
-/* Búsqueda */
+/* Search */
 .sres {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1846,7 +1846,7 @@ button.item:active,
     max-width: 100%;
 }
 
-/* Registro */
+/* Log */
 .logline {
     border-bottom: 1px solid var(--border);
     font-size: 12.5px;
@@ -1871,7 +1871,7 @@ button.item:active,
     color: #8fb3ff;
 }
 
-/* Tablets en horizontal: dos columnas de tarjetas */
+/* Landscape tablets: two columns of cards */
 @media (min-width: 720px) {
     .tlist {
         display: grid;
@@ -1893,7 +1893,7 @@ button.item:active,
     }
 }
 
-/* ---------- Encabezados que se desplazan con el contenido ---------- */
+/* ---------- Headers that scroll with the content ---------- */
 .safe-top {
     background: var(--bg);
     flex-shrink: 0;
@@ -1961,7 +1961,7 @@ body.selecting .selhead-fixed {
     content-visibility: auto;
 }
 
-/* Los hijos no reciben toques: así un refresco del contenido nunca "pierde" un toque */
+/* Children ignore taps, so a content refresh never "loses" a tap */
 .tcard > :not(.row1),
 .tcard .row1 > :not(.quick),
 .frow > :not(.cb),
@@ -2046,7 +2046,7 @@ button > *,
     padding: 30px;
 }
 
-/* Espacio libre en disco */
+/* Free disk space */
 .diskline {
     align-items: center;
     background: var(--surface);

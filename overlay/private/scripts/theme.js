@@ -1,8 +1,8 @@
 /*
- * Tema Penumbra: se carga primero en la ventana principal.
- * - Fuerza el modo oscuro.
- * - Si el dispositivo es un teléfono, redirige a la interfaz móvil dedicada
- *   (a menos que el usuario haya elegido "Versión escritorio" desde el móvil).
+ * Penumbra theme: loaded first in the main window.
+ * - Forces dark mode.
+ * - If the device is a phone, redirects to the dedicated mobile UI
+ *   (unless the user picked "Desktop version" from the mobile UI).
  */
 "use strict";
 
@@ -23,14 +23,14 @@
     if ((uiPref === "mobile") || ((uiPref !== "desktop") && isPhone))
         window.location.replace("mobile.html");
 
-    // Texto del acceso a la interfaz móvil en el menú Ver (lo agrega build.sh en inglés)
+    // Label of the mobile UI link in the View menu (build.sh adds it in English)
     document.addEventListener("DOMContentLoaded", () => {
         const label = document.getElementById("mobileUiLabel");
         if (label && document.documentElement.lang.startsWith("es"))
             label.textContent = "Interfaz móvil";
     });
 
-    // Al volver a la interfaz móvil desde el menú, olvidar la preferencia "escritorio"
+    // When switching back to the mobile UI from the menu, forget the "desktop" preference
     document.addEventListener("click", (e) => {
         if (e.target.closest && e.target.closest("#mobileUiLink")) {
             try {

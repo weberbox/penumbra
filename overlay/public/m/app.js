@@ -1,12 +1,12 @@
 /*
- * Penumbra — interfaz móvil dedicada para qBittorrent (WebUI API v2).
- * Sin dependencias. Se comunica con la misma API que usa el WebUI oficial.
+ * Penumbra — dedicated mobile UI for qBittorrent (WebUI API v2).
+ * No dependencies. Talks to the same API the official WebUI uses.
  */
 "use strict";
 
 (() => {
     // =====================================================================
-    // Utilidades
+    // Utilities
     // =====================================================================
     const STORE_KEY = "penumbra.m";
     const store = {
@@ -30,12 +30,12 @@
         }
     };
 
-    // Idioma: el de qBittorrent (lo inyecta en <html lang>), o el del navegador si no está disponible
+    // Language: qBittorrent's (injected into <html lang>), or the browser's if unavailable
     const htmlLang = document.documentElement.lang || "";
     const LANG = (/^[a-z]{2}$/i.test(htmlLang) ? htmlLang : (navigator.language || "en")).slice(0, 2).toLowerCase();
     const LOCALE = LANG;
     const DICT = (window.PENUMBRA_I18N || {})[LANG] || {};
-    // T("English text {0}", value): devuelve la traducción, o el texto en inglés. "§contexto" desambigua claves iguales.
+    // T("English text {0}", value): returns the translation, or the English text. "§context" disambiguates identical keys.
     const T = (s, ...a) => (DICT[s] ?? s.replace(/§.*$/, "")).replace(/\{(\d)\}/g, (m, i) => ((a[i] === undefined) ? m : a[i]));
 
     const $ = (s, r = document) => r.querySelector(s);
@@ -156,7 +156,7 @@
     };
 
     // =====================================================================
-    // Iconos (trazos estilo Lucide)
+    // Icons (Lucide-style strokes)
     // =====================================================================
     const ICONS = {
         play: "<path d='M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z'/>",
@@ -293,7 +293,7 @@
     };
 
     // =====================================================================
-    // Estado
+    // State
     // =====================================================================
     const S = {
         rid: 0,
@@ -317,7 +317,7 @@
     const saveFilter = () => store.set("filter", S.filter);
 
     // =====================================================================
-    // Estados de torrent y filtros
+    // Torrent states and filters
     // =====================================================================
     const STATE = {
         downloading: [T("Downloading"), "s-dl"],
@@ -486,7 +486,7 @@
     };
 
     // =====================================================================
-    // Sincronización (sync/maindata)
+    // Sync (sync/maindata)
     // =====================================================================
     let syncTimer = null;
     let syncing = false;
@@ -596,7 +596,7 @@
     };
 
     // =====================================================================
-    // Historial (botón "atrás" de Android cierra hojas y páginas)
+    // History (Android "back" button closes sheets and pages)
     // =====================================================================
     const overlays = [];
     let ignorePop = 0;
@@ -654,7 +654,7 @@
     };
 
     // =====================================================================
-    // Hojas inferiores
+    // Bottom sheets
     // =====================================================================
     const openSheet = ({ title = "", subtitle = "", body = "", onClose, cls = "" } = {}) => {
         const wrap = h(`<div class="sheet-wrap">
@@ -698,7 +698,7 @@
         wrap.querySelector(".sheet-backdrop").addEventListener("click", () => sheet.close());
         wrap.querySelector("[data-x]")?.addEventListener("click", () => sheet.close());
 
-        // Arrastrar hacia abajo para cerrar
+        // Drag down to close
         const sheetEl = wrap.querySelector(".sheet");
         let startY = null;
         let dy = 0;
@@ -737,7 +737,7 @@
         return sheet;
     };
 
-    // Menú de acciones: items = [{icon, label, sub, danger, value, onClick, hidden, keepOpen}]
+    // Action menu: items = [{icon, label, sub, danger, value, onClick, hidden, keepOpen}]
     const menuSheet = ({ title, subtitle, items, groups }) => {
         const gs = groups || [{ items }];
         const body = h("<div class=\"menu\"></div>");
@@ -816,7 +816,7 @@
         }, 320);
     });
 
-    // opciones: [{value, label, sub, icon}]
+    // options: [{value, label, sub, icon}]
     const choiceSheet = ({ title, subtitle, options, selected }) => new Promise((resolve) => {
         let result;
         const body = h("<div class=\"group optlist\"></div>");
@@ -832,7 +832,7 @@
     });
 
     // =====================================================================
-    // Páginas a pantalla completa (detalle, listas)
+    // Full-screen pages (detail, lists)
     // =====================================================================
     const openPage = ({ title, actions = "", onClose }) => {
         const el = h(`<div class="page">
@@ -872,7 +872,7 @@
         };
     };
 
-    // Render con claves: reutiliza los nodos existentes para no perder toques ni scroll
+    // Keyed render: reuses existing nodes so taps and scroll position are never lost
     const keyed = (container, items, keyFn, create, update) => {
         const old = container._k || new Map();
         const next = new Map();
@@ -896,7 +896,7 @@
         container._k = next;
     };
 
-    // Pulsación larga + toque sobre un contenedor delegado
+    // Long press + tap on a delegated container
     const pressable = (container, selector, { onTap, onLong }) => {
         let timer = null;
         let startX = 0;
@@ -947,7 +947,7 @@
     };
 
     // =====================================================================
-    // Acciones sobre torrents
+    // Torrent actions
     // =====================================================================
     const J = (hashes) => hashes.join("|");
     const tor = (hash) => S.torrents.get(hash);
@@ -1119,7 +1119,7 @@
                 sheet.close();
             });
         },
-        // Para varios torrents, alinea todos al estado contrario del primero
+        // For several torrents, set them all to the opposite of the first one's state
         toggleFlag: (hs, field, endpoint, msgOn, msgOff) => {
             const target = !hs.every((x) => tor(x)?.[field]);
             const todo = hs.filter((x) => !!tor(x)?.[field] !== target);
@@ -1232,7 +1232,7 @@
     };
 
     // =====================================================================
-    // Categorías y etiquetas
+    // Categories and tags
     // =====================================================================
     const categoryEditor = (existing) => new Promise((resolve) => {
         let result = null;
@@ -1265,7 +1265,7 @@
     });
 
     // =====================================================================
-    // Agregar torrents
+    // Add torrents
     // =====================================================================
     const addSheet = ({ url = "" } = {}) => {
         const p = S.prefs;
@@ -1423,7 +1423,7 @@
     };
 
     // =====================================================================
-    // Vista: Torrents
+    // View: Torrents
     // =====================================================================
     const TV = {};
     const setSelecting = (on) => {
@@ -1693,7 +1693,7 @@
         const all = [...S.torrents.values()];
         const base = all.filter(matchOthers);
 
-        // Chips de estado con conteo
+        // Status chips with counts
         const counts = {};
         for (const [k] of STATUS_FILTERS)
             counts[k] = 0;
@@ -1835,7 +1835,7 @@
     };
 
     // =====================================================================
-    // Detalle de torrent
+    // Torrent details
     // =====================================================================
     const openDetail = (hash) => {
         let t = tor(hash);
@@ -2055,7 +2055,7 @@
             }
         };
 
-        // ---------- Archivos ----------
+        // ---------- Files ----------
         const PRIO = { 0: T("Do not download"), 1: "Normal", 6: T("High"), 7: T("Maximum") };
         const buildTree = (list) => {
             const root = { name: "", path: "", children: new Map(), files: [] };
@@ -2378,7 +2378,7 @@
             });
         });
 
-        // ---------- Pares ----------
+        // ---------- Peers ----------
         const peerCreate = () => h(`<div class="prow"><div class="top"><span class="flag"></span><span class="ip"></span><span class="prio p6" style="display:inline-block"></span></div><small></small></div>`);
         const peerUpdate = (el, p) => {
             const sig = [p.progress, p.dl_speed, p.up_speed, p.client, p.flags, p.connection].join("|");
@@ -2441,7 +2441,7 @@
             }
         });
 
-        // ---------- Ciclo de refresco ----------
+        // ---------- Refresh loop ----------
         let pieceTick = 0;
         const refresh = async (immediate) => {
             clearTimeout(timer);
@@ -2501,7 +2501,7 @@
     };
 
     // =====================================================================
-    // Vista: Buscar (motor de búsqueda de qBittorrent)
+    // View: Search (qBittorrent's search engine)
     // =====================================================================
     const SV = { plugins: null, id: null, results: [], status: "", total: 0, timer: null };
     const buildSearchView = () => {
@@ -2714,7 +2714,7 @@
     };
 
     // =====================================================================
-    // Vista: RSS
+    // View: RSS
     // =====================================================================
     const RV = { items: null };
     const buildRssView = () => {
@@ -2944,7 +2944,7 @@
     };
 
     // =====================================================================
-    // Vista: Más (estadísticas, velocidad, opciones)
+    // View: More (statistics, speed, options)
     // =====================================================================
     const MV = {};
     const PREF_GROUPS = [
@@ -3393,7 +3393,7 @@
     };
 
     // =====================================================================
-    // Inicio de sesión
+    // Login
     // =====================================================================
     const showLogin = (msg = "") => {
         clearTimeout(syncTimer);
@@ -3440,7 +3440,7 @@
     };
 
     // =====================================================================
-    // Arranque y navegación por pestañas
+    // Startup and tab navigation
     // =====================================================================
     const TABS = [["torrents", "Torrents", "transfer"], ["search", T("Search"), "search"], ["rss", "RSS", "rss"], ["more", T("More"), "settings"]];
     let views = {};
@@ -3503,7 +3503,7 @@
         });
         sync();
 
-        // Compartir un enlace magnet a esta página: mobile.html?add=magnet:...
+        // Sharing a magnet link to this page: mobile.html?add=magnet:...
         const params = new URLSearchParams(location.search);
         const add = params.get("add") || params.get("magnet") || params.get("url");
         if (add) {
