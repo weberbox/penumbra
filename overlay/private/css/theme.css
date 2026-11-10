@@ -1,10 +1,10 @@
 /*
- * Penumbra — tema oscuro moderno para el WebUI de qBittorrent (escritorio).
- * Se carga después de las hojas originales y sólo reemplaza la apariencia:
- * todo el HTML y JavaScript original sigue intacto, así que no se pierde ninguna función.
+ * Penumbra — a modern dark theme for the qBittorrent WebUI (desktop).
+ * Loaded after the original stylesheets and only replaces the look:
+ * all original HTML and JavaScript stays intact, so no feature is lost.
  */
 
-/* ---------- Paleta ---------- */
+/* ---------- Palette ---------- */
 :root,
 :root.dark,
 :root:not(.dark) {
@@ -30,7 +30,7 @@
     --n-shadow: 0 18px 50px rgb(0 0 0 / 55%), 0 2px 8px rgb(0 0 0 / 35%);
     --n-font: "Inter", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, "Roboto", "Helvetica Neue", sans-serif;
 
-    /* Variables originales de qBittorrent remapeadas */
+    /* Original qBittorrent variables, remapped */
     --color-accent-blue: var(--n-accent);
     --color-text-blue: #8fb3ff;
     --color-text-orange: #b4a9ff;
@@ -121,7 +121,7 @@ pre {
     font-family: ui-monospace, "JetBrains Mono", "Cascadia Code", Consolas, monospace;
 }
 
-/* ---------- Controles de formulario ---------- */
+/* ---------- Form controls ---------- */
 input[type="search"],
 input[type="text"],
 input[type="number"],
@@ -237,7 +237,7 @@ fieldset legend {
     padding: 2px 8px;
 }
 
-/* ---------- Barra de menú superior ---------- */
+/* ---------- Top menu bar ---------- */
 #desktopHeader {
     background: var(--n-surface);
     border-bottom: 1px solid var(--n-border);
@@ -271,7 +271,6 @@ fieldset legend {
     border: 1px solid var(--n-border-strong);
     border-radius: var(--n-radius);
     box-shadow: var(--n-shadow);
-    margin-top: 2px;
     padding: 5px;
 }
 
@@ -297,7 +296,7 @@ li.divider {
     margin: 0 8px -3px -20px;
 }
 
-/* ---------- Barra de herramientas ---------- */
+/* ---------- Toolbar ---------- */
 #mochaToolbar {
     align-items: center;
     display: flex;
@@ -351,7 +350,7 @@ li.divider {
     width: 1px;
 }
 
-/* Pestañas principales (Transferencias / Buscar / RSS / Registro) */
+/* Main tabs (Transfers / Search / RSS / Log) */
 #mainWindowTabs {
     float: none;
     margin: 0 0 0 auto;
@@ -407,7 +406,7 @@ li.divider {
     box-shadow: none;
 }
 
-/* Filtro de la lista de torrents */
+/* Torrent list filter */
 #torrentsFilterToolbar {
     align-items: center;
     display: inline-flex;
@@ -443,7 +442,7 @@ li.divider {
     border-radius: 999px;
 }
 
-/* ---------- Paneles y columnas ---------- */
+/* ---------- Panels and columns ---------- */
 #desktop {
     background: var(--n-bg);
 }
@@ -503,7 +502,7 @@ li.divider {
     border-radius: var(--n-radius-sm);
 }
 
-/* Barra lateral de filtros */
+/* Filters sidebar */
 #Filters,
 #filtersColumn,
 #Filters_pad {
@@ -546,7 +545,7 @@ ul.filterList .selectedFilter > span.link {
     color: #ffffff;
 }
 
-/* ---------- Tablas ---------- */
+/* ---------- Tables ---------- */
 .dynamicTableFixedHeaderDiv,
 #torrentsTableFixedHeaderDiv,
 #propertiesPanel .dynamicTableFixedHeaderDiv {
@@ -596,7 +595,7 @@ ul.filterList .selectedFilter > span.link {
     background-color: rgb(124 108 255 / 22%);
 }
 
-/* Barras de progreso */
+/* Progress bars */
 .progressbar_wrapper {
     background: var(--n-bg);
     border: 0 !important;
@@ -617,7 +616,7 @@ ul.filterList .selectedFilter > span.link {
     font-weight: 600;
 }
 
-/* ---------- Menús contextuales ---------- */
+/* ---------- Context menus ---------- */
 .contextMenu,
 .contextMenu li ul {
     background: var(--n-surface-2);
@@ -659,7 +658,7 @@ ul.filterList .selectedFilter > span.link {
     border-radius: 4px;
 }
 
-/* ---------- Ventanas (diálogos MochaUI) ---------- */
+/* ---------- Windows (MochaUI dialogs) ---------- */
 .mocha {
     background-color: var(--n-surface);
 }
@@ -714,7 +713,7 @@ div.mochaToolbarWrapper.bottom {
     background-color: var(--n-surface);
 }
 
-/* Preferencias */
+/* Preferences */
 #preferencesToolbar,
 #prefTabs {
     background: var(--n-surface);
@@ -736,7 +735,7 @@ div.mochaToolbarWrapper.bottom {
     border-radius: var(--n-radius-sm);
 }
 
-/* Estadísticas */
+/* Statistics */
 #statisticsContent table {
     background-color: var(--n-surface-2);
     border: 1px solid var(--n-border);
@@ -744,7 +743,7 @@ div.mochaToolbarWrapper.bottom {
     padding: 8px 12px;
 }
 
-/* ---------- Barra de estado ---------- */
+/* ---------- Status bar ---------- */
 #desktopFooterWrapper {
     background: var(--n-surface);
     border-top: 1px solid var(--n-border);
@@ -782,7 +781,7 @@ td.speedLabel {
     font-variant-numeric: tabular-nums;
 }
 
-/* ---------- Varios ---------- */
+/* ---------- Miscellaneous ---------- */
 #searchResults .numSearchResults {
     color: var(--n-text-dim);
 }
@@ -827,7 +826,7 @@ label.tristate {
     color: var(--n-text) !important;
 }
 
-/* Logo sutil al iniciar */
+/* Subtle logo at the start */
 #desktopNavbar > ul::before {
     background: url("../images/qbittorrent-tray.svg") center / 18px no-repeat;
     content: "";
@@ -838,7 +837,7 @@ label.tristate {
     width: 26px;
 }
 
-/* ---------- Iconos monocromáticos ---------- */
+/* ---------- Monochrome icons ---------- */
 :root {
     --n-icon: brightness(0) invert(0.86);
     --n-icon-strong: brightness(0) invert(1);
@@ -862,7 +861,7 @@ ul.filterList .selectedFilter > .link img,
     filter: var(--n-icon-strong);
 }
 
-/* Íconos dibujados como fondo (filtro de texto, regex, estados de la lista) */
+/* Icons drawn as backgrounds (text filter, regex, list states) */
 #torrentsFilterInput,
 #torrentFilesFilterInput {
     background-image: none !important;
@@ -904,7 +903,7 @@ ul.filterList .selectedFilter > .link img,
     filter: var(--n-icon-strong);
 }
 
-/* Pestañas del panel inferior: altura fija y centradas para que la píldora nunca se recorte */
+/* Bottom panel tabs: fixed height and centered so the pill is never clipped */
 #propertiesPanel_header .panel-headerContent {
     padding-top: 0;
 }
@@ -933,7 +932,7 @@ ul.filterList .selectedFilter > .link img,
     width: 14px;
 }
 
-/* Fila de filtros del buscador: altura suficiente para los controles del tema */
+/* Search filters row: tall enough for the theme's controls */
 #searchResultsFilters:not(.invisible) {
     align-items: center;
     display: flex;
@@ -954,7 +953,7 @@ ul.filterList .selectedFilter > .link img,
     white-space: nowrap;
 }
 
-/* Lupas dentro de los campos de búsqueda en el mismo tono que el resto de los íconos */
+/* Magnifier icons inside search fields, in the same tone as the other icons */
 #searchPattern,
 #filterTextInput,
 #torrentFilesFilterInput {
